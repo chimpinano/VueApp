@@ -1,22 +1,21 @@
-console.log('hello');
+console.log('Server is running')
 
- const express = require('express');
- const bodyParser = require('body-parser');
- const cors = require('cors');
- const morgan = require('morgan');
+const express = require('express'),
+    bodyParser = require('body-parser'),
+    cors = require('cors'),
+    morgan = require('morgan');
 
- const app = new express();
+app = new express();
 
- app.use(morgan('combined'));
- app.use(bodyParser.json());
- app.use(cors());
+//Setup middleware
+app.use(cors());
+app.use(morgan('combined'))
+app.use(bodyParser.json())
 
-
-app.get('/status', (req, res) =>{
+app.post('/register', (req, res, next) => {
     res.send({
-        message:'Hello world'
-    });
+        message: `Hello ${req.body.email}! your user was registered!`
+    })
 });
 
-
-app.listen(process.env.Port || 8081);
+app.listen(8081);
