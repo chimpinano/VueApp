@@ -28,7 +28,7 @@ export default {
         password: this.password
       });
 
-      console.log(response);
+      console.debug(response.data);
     }
   }
 };
